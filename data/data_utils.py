@@ -20,9 +20,10 @@ def get_data_path_manager():
     dataset_path = data_path_obj['dataset_path']
     WESAD_dataset_path = data_path_obj['wesad_dataset_path']
     WESAD_wrist_metadata_path = osp.join(dataset_path, 'wesad_wrist_metadata.json')
+    WESAD_stats_feature_path = data_path_obj['WESAD_stats_feature_path']
     AffectiveROAD_dataset_path = data_path_obj['affectiveroad_dataset_path']
 
-    dp_manager = DataPathManager(dataset_path, WESAD_dataset_path, WESAD_wrist_metadata_path, AffectiveROAD_dataset_path)
+    dp_manager = DataPathManager(dataset_path, WESAD_dataset_path, WESAD_wrist_metadata_path, WESAD_stats_feature_path, AffectiveROAD_dataset_path)
     return dp_manager
 
 

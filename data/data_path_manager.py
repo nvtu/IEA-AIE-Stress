@@ -7,5 +7,6 @@ class DataPathManager:
     dataset_path: str
     WESAD_dataset_path: str
     WESAD_wrist_metadata_path: str
+    WESAD_stats_feature_path: str
     AffectiveROAD_dataset_path: str
     
