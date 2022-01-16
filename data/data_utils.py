@@ -17,13 +17,20 @@ def get_data_path_manager():
     config.read(config_file_path)
 
     data_path_obj = config['DATA_PATH']
+    result_path_obj = config['RESULT_PATH']
+    model_path_obj = config['MODEL_PATH']
     dataset_path = data_path_obj['dataset_path']
     WESAD_dataset_path = data_path_obj['wesad_dataset_path']
     WESAD_wrist_metadata_path = osp.join(dataset_path, 'wesad_wrist_metadata.json')
-    WESAD_stats_feature_path = data_path_obj['WESAD_stats_feature_path']
+    WESAD_stats_feature_path = data_path_obj['wesad_stats_feature_path']
     AffectiveROAD_dataset_path = data_path_obj['affectiveroad_dataset_path']
+    AffectiveROAD_stats_feature_path = data_path_obj['affectiveroad_stats_feature_path']
+    WESAD_result_path = result_path_obj['wesad_result_path']
+    AffectiveROAD_result_path = result_path_obj['affectiveroad_result_path']
+    WESAD_model_path = model_path_obj['wesad_model_path']
+    AffectiveROAD_model_path = model_path_obj['affectiveroad_model_path']
 
-    dp_manager = DataPathManager(dataset_path, WESAD_dataset_path, WESAD_wrist_metadata_path, WESAD_stats_feature_path, AffectiveROAD_dataset_path)
+    dp_manager = DataPathManager(dataset_path, WESAD_dataset_path, WESAD_wrist_metadata_path, WESAD_stats_feature_path, AffectiveROAD_dataset_path, AffectiveROAD_stats_feature_path, WESAD_result_path, AffectiveROAD_result_path, WESAD_model_path, AffectiveROAD_model_path)
     return dp_manager
 
 
@@ -60,4 +67,20 @@ def get_dataset_path(dp_manager: DataPathManager, name: str):
         return dp_manager.WESAD_dataset_path
     elif name == 'AffectiveROAD':
         return dp_manager.AffectiveROAD_dataset_path
+    return None
+
+
+def get_dataset_stats_features_path(dp_manager: DataPathManager, name: str):
+    if name == 'WESAD':
+        return dp_manager.WESAD_stats_feature_path
+    elif name == 'AffectiveROAD':
+        return dp_manager.AffectiveROAD_stats_feature_path
+    return None
+
+
+def get_model_path(dp_manager: DataPathManager, name: str):
+    if name == 'WESAD':
+        return dp_manager.WESAD_model_path
+    elif name == 'AffectiveROAD':
+        return dp_manager.AffectiveROAD_model_path
     return None

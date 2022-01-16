@@ -67,8 +67,7 @@ class SWT_Threshold_Denoiser:
 class EDA_Signal_Processor:
 
 
-    def eda_signal_processing(self, eda, sampling_rate):
-         # eda = MinMaxScaler().fit_transform(np.array(eda).reshape(-1, 1)).ravel()
+    def eda_clean(self, eda, sampling_rate):
         HIGHCUT_FREQUENCY = 5 # defaults as BioSPPy
         nyquist_freq = 2 * HIGHCUT_FREQUENCY / sampling_rate # Normalize frequency to Nyquist Frequency (Fs/2)
         if 0 < nyquist_freq < 1:
@@ -78,9 +77,14 @@ class EDA_Signal_Processor:
             CUTOFF_FREQUENCY = 1
             b, a = scipy.signal.butter(BUTTERWORTH_ORDER, CUTOFF_FREQUENCY, btype = 'low', fs = sampling_rate)
             eda = scipy.signal.filtfilt(b, a, eda)
-        eda_decomposed = nk.eda_phasic(eda, sampling_rate=sampling_rate, method = 'cvxeda')
+        return eda
+
+
+    def eda_signal_processing(self, eda, sampling_rate):
+        eda_cleaned = self.eda_clean(eda, sampling_rate)
+        eda_decomposed = nk.eda_phasic(eda_cleaned, sampling_rate=sampling_rate, method = 'cvxeda')
         scr_peaks, _ = nk.eda_peaks(eda_decomposed['EDA_Phasic'], sampling_rate=sampling_rate)
-        signals = pd.DataFrame({"EDA_Cleaned": eda})
+        signals = pd.DataFrame({"EDA_Cleaned": eda_cleaned})
         signals = pd.concat([signals, eda_decomposed, scr_peaks], axis=1)
         return signals
     
