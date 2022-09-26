@@ -17,6 +17,7 @@ DEVICE = 'wrist'
 NORMALIZER = ''
 
 WINDOW_SIZE = 60
+WINDOW_SIZE = 120
 WINDOW_SHIFT = 0.25
 
 dp_manager = get_data_path_manager()

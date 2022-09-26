@@ -25,7 +25,8 @@ DATASET_NAME = 'WESAD'
 DEVICE = 'wrist'
 SIGNAL_NAME = 'EDA'
 
-WINDOW_SIZE = 60
+# WINDOW_SIZE = 60
+WINDOW_SIZE = 120
 WINDOW_SHIFT = 0.25
 
 dp_manager = get_data_path_manager()

@@ -26,18 +26,19 @@ dataset_name = 'WESAD'
 # device = 'right'
 device = 'wrist'
 physiological_signal_type = 'BVP_EDA_TEMP'
-physiological_signal_type = 'BVP_EDA'
+# physiological_signal_type = 'BVP_EDA'
 physiological_signal_type = 'BVP'
-# NORMALIZER = '_nonorm'
-# NORMALIZER = ''
-NORMALIZER = '_stdnorm'
 # physiological_signal_type = 'EDA'
+# NORMALIZER = '_nonorm'
+NORMALIZER = ''
+# NORMALIZER = '_stdnorm'
 # physiological_signal_type = 'TEMP'
 # dataset_name = 'DCU_NVT_EXP1'
 
 # %%
 WINDOW_SHIFT = 0.25
 WINDOW_SIZE = 60
+# WINDOW_SIZE = 120
 
 # %%
 ds_loader = DatasetLoader(dataset_name, device, physiological_signal_type, NORMALIZER = NORMALIZER, WINDOW_SHIFT = WINDOW_SHIFT, WINDOW_SIZE = WINDOW_SIZE)
@@ -47,7 +48,7 @@ ds_loader = DatasetLoader(dataset_name, device, physiological_signal_type, NORMA
 
 # %%
 # -- Uncomment the detection strategy that you wanna use to detect -- #
-strategies = ['random_forest'] #, 'mlp']
+strategies = ['svm'] #, 'mlp']
 # detection_strategy = 'logistic_regression'
 # detection_strategy = 'random_forest'
 # detection_strategy = 'svm'
